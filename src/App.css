@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
+* {
+  scroll-behavior: smooth;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: #121212;
+  padding-top: 100px;
+  padding-bottom: 70px;
+  color: #ffffff;
+}
+
+@media (max-width:700px) {
+  .app {
+    padding-top: 70px;
+
+  }
+}
+
+.pageTitle {
+  display: flex;
+  justify-content: space-between;
+  font-size: 30px;
+  padding: 4px;
+  color: #ffffff;
+  font-family: 'Montserrat';
+  cursor: pointer;
+}

@@ -9,7 +9,9 @@ const handleDragStart = (e) => e.preventDefault();
 const imgStyle = {
   borderRadius: "10px",
   marginBottom: "5px",
-  boxShadow: '0px 0px 5px black'
+  boxShadow: '0px 0px 5px black',
+    maxHeight: "300px",
+  maxWidth:"100px"
 }
 const carouselItem = {
     display: "flex",

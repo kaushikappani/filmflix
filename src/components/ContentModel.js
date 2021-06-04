@@ -10,6 +10,8 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import "./contentModel.css"
 import Carousel from "./Caurasol";
 import Rating from '@material-ui/lab/Rating';
+import Chip from '@material-ui/core/Chip';
+
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -85,18 +87,33 @@ const [content, setContent] = useState();
       >
         <Fade in={open}>
           {content && <div className={classes.paper}>
+            {console.log(content)}
             <div className="contentModel" >
               <img className="content_img" alt={content.name || content.title} src={content.poster_path ? `${img_500}/${content.poster_path}` : unavailableLandscape} />
               <img className="content_img_landscape" alt={content.name || content.title} src={content.poster_path ? `${img_500}/${content.backdrop_path}` : unavailableLandscape} />
-               
+              
               <div className="contentModel_about">
                 
                               <span className="content_title">{content.name || content.title} ({content.first_air_date || content.release_date || "----"} )</span>
                 {content.tagline && <i className="content_tagline">{content.tagline}</i>}
-                <div className="contentModel_rating">
+                {
+                  content.vote_average>0 && <div className="contentModel_rating">
                   <p>Rating:</p>
-                  <Rating name="half-rating-read" defaultValue={content.vote_average/2} precision={0.1} readOnly /> <p>{content.vote_average}/10</p>
+                    <Rating name="half-rating-read" defaultValue={content.vote_average / 2} precision={0.1} readOnly /> <p>{content.vote_average}/10</p>
+                    
                 </div>
+                
+                }
+                
+                <div className="genres">
+                  {
+                    content.genres.map(g => {
+                      return <Chip size="medium" key={g.id} style={{color:'#ffffff', backgroundColor:'#282c34', margin:'2px'}}  label={g.name} variant="outlined" />
+                    })
+                  }
+                </div>
+              
+                
                 <span className="content_dscription">{content.overview}</span>
                 
                               <div>

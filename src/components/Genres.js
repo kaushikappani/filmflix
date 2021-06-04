@@ -16,9 +16,11 @@ const Genres = ({
             return [...preVal, genre]
         });
         setGenres(preVal => {
-            return (preVal.filter((item) => {
+            return (
+                preVal.filter(item => {
                 return item.id !== genre.id;
-            }))
+                })
+            )
         })
         setPage(1)
 
@@ -26,8 +28,8 @@ const Genres = ({
     const removeGenre = (g) => {
         setSelectedGenres(preVal => {
             return (
-                preVal.filter(i => {
-                    return i.id!==g.id
+                preVal.filter(item => {
+                    return item.id!==g.id
                 })
             )
         })
@@ -45,9 +47,9 @@ const Genres = ({
     return (
         <div>
              {selectedGenres &&
-                selectedGenres.map(e => <Chip key={e.id} style={{color:'#ffffff', backgroundColor:'#000000', margin:'1px'}} clickable onClick={()=>removeGenre(e)} label={e.name} variant="outlined" />)}
+                selectedGenres.map(e => <Chip size="medium" key={e.id} style={{color:'#ffffff', backgroundColor:'#bb86fc', margin:'2px'}} clickable onClick={()=>removeGenre(e)} label={e.name} variant="outlined" />)}
             {genres &&
-                genres.map(e => <Chip key={e.id} style={{color:'#ffffff', backgroundColor:'#282c34', margin:'1px'}} clickable onClick={()=>addGenre(e)} label={e.name} variant="outlined" />)}
+                genres.map(e => <Chip key={e.id} style={{color:'#ffffff', backgroundColor:'#282c34', margin:'2px' ,fontSize:"15px"}} clickable onClick={()=>addGenre(e)} label={e.name} variant="outlined" />)}
         </div>
     )
 }

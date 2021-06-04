@@ -30,7 +30,7 @@ export default function LabelBottomNavigation() {
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root} showLabels>
-      <BottomNavigationAction component={Link} to="/"  style={styles} label="Trending" value="Trending" icon={<WhatshotIcon />} />
+      <BottomNavigationAction  component={Link} to="/"  style={styles} label="Trending" value="Trending" icon={<WhatshotIcon />} />
       <BottomNavigationAction component={Link} to="/movies" style={styles} label="Movies" value="Movies" icon={<LocalMoviesIcon />} />
       <BottomNavigationAction component={Link} to="/series" style={styles} label="TV Series" value="TV Series" icon={<TvIcon />} />
       <BottomNavigationAction component={Link} to="/search" style={styles} label="Search" value="Search" icon={<SearchIcon />} />

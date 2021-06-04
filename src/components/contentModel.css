@@ -11,6 +11,12 @@
     justify-content: center;
 }
 
+.genres {
+    justify-content: center;
+}
+
+
+
 .contentModel_rating p {
     margin: 2.5px;
 }

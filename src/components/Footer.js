@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -7,7 +7,6 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 import LocalMoviesIcon from '@material-ui/icons/LocalMovies';
 import TvIcon from '@material-ui/icons/Tv';
 import SearchIcon from '@material-ui/icons/Search';
-import { useHistory } from 'react-router';
 import {Link} from "react-router-dom"
 const useStyles = makeStyles({
     root: {
@@ -25,8 +24,6 @@ const styles = {
 export default function LabelBottomNavigation() {
   const classes = useStyles();
   const [value, setValue] = React.useState('Trending');
-  const history = useHistory();
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

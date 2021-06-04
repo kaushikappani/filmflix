@@ -41,7 +41,7 @@ const Genres = ({
     };
     useEffect(() => {
         fetchGenres();
-    }, [])
+    })
     return (
         <div>
              {selectedGenres &&

@@ -1,6 +1,6 @@
 {
-    "name": "Filmflex",
-    "short_name": "Filmflex",
+    "name": "Filmflix",
+    "short_name": "Filmflix",
     "description":"search trending movies and tvshows",
     "icons": [{
         "src":"favicon/maskable_icon.png",

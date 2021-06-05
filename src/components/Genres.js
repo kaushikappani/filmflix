@@ -11,45 +11,42 @@ const Genres = ({
     setGenres,
     setPage
 }) => {
-    const addGenre = (genre) => {
-        setSelectedGenres(preVal => {
-            return [...preVal, genre]
-        });
-        setGenres(preVal => {
-            return (
-                preVal.filter(item => {
-                return item.id !== genre.id;
-                })
-            )
-        })
-        setPage(1)
-
+    const handleAdd = (genre) => {
+        setSelectedGenres([...selectedGenres, genre]);
+        setGenres(genres.filter((g) => g.id !== genre.id));
+        setPage(1);
     };
-    const removeGenre = (g) => {
-        setSelectedGenres(preVal => {
-            return (
-                preVal.filter(item => {
-                    return item.id!==g.id
-                })
-            )
-        })
-        setGenres(preVal => {
-            return [...preVal,g]
-        })
-    }
+
+    const handleRemove = (genre) => {
+        setSelectedGenres(
+            selectedGenres.filter((selected) => selected.id !== genre.id)
+        );
+        setGenres([...genres, genre]);
+        setPage(1);
+    };
+
     const fetchGenres = async () => {
-        const { data } = await axios.get(`https://api.themoviedb.org/3/genre/${type}/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
+        const { data } = await axios.get(
+            `https://api.themoviedb.org/3/genre/${type}/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+        );
         setGenres(data.genres);
     };
+
     useEffect(() => {
         fetchGenres();
-    })
+
+        return () => {
+            setGenres({}); // unmounting
+        };
+        // eslint-disable-next-line
+    }, []);
+
     return (
         <div>
-             {selectedGenres &&
-                selectedGenres.map(e => <Chip size="medium" key={e.id} style={{color:'#ffffff', backgroundColor:'#bb86fc', margin:'2px'}} clickable onClick={()=>removeGenre(e)} label={e.name} variant="outlined" />)}
+            {selectedGenres &&
+                selectedGenres.map(e => <Chip size="medium" key={e.id} style={{ color: '#ffffff', backgroundColor: '#bb86fc', margin: '2px' }} clickable onClick={() => handleRemove(e)} label={e.name} variant="outlined" />)}
             {genres &&
-                genres.map(e => <Chip key={e.id} style={{color:'#ffffff', backgroundColor:'#282c34', margin:'2px' ,fontSize:"15px"}} clickable onClick={()=>addGenre(e)} label={e.name} variant="outlined" />)}
+                genres.map(e => <Chip key={e.id} style={{ color: '#ffffff', backgroundColor: '#282c34', margin: '2px', fontSize: "15px" }} clickable onClick={() => handleAdd(e)} label={e.name} variant="outlined" />)}
         </div>
     )
 }

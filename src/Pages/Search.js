@@ -8,7 +8,7 @@ import axios from 'axios';
 const style = {
     display: "flex",
     margin: "15px 0",
-    width:'100%'
+    width: '100%'
 }
 const Search = () => {
 
@@ -26,27 +26,25 @@ const Search = () => {
         }
     });
 
-  const fetchSearch = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=${
-          process.env.REACT_APP_API_KEY
-        }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
-        );
-        console.log(data.results)
-      setContent(data.results);
-      setNumPages(data.total_pages);
-      // console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    const fetchSearch = async () => {
+        try {
+            const { data } = await axios.get(
+                `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=${process.env.REACT_APP_API_KEY
+                }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
+            );
+            setContent(data.results);
+            setNumPages(data.total_pages);
+            // console.log(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     useEffect(() => {
         window.scroll(0, 0);
         fetchSearch();
         // eslint-disable-next-line
-    },[type,page,searchText])
+    }, [type, page, searchText])
 
     const handelSubmit = (e) => {
         fetchSearch();
@@ -55,29 +53,29 @@ const Search = () => {
     return (
         <div >
             <ThemeProvider theme={theme}>
-                <form onSubmit = {handelSubmit}>
-                    <div style ={style}><TextField onChange={e=>setSearchText(e.target.value)} style={{ flex: 1 }} className="searchBox" label="Search" />
-                <Button type="submit" variant="outlined"><SearchIcon /></Button>
-                </div>
+                <form onSubmit={handelSubmit}>
+                    <div style={style}><TextField onChange={e => setSearchText(e.target.value)} style={{ flex: 1 }} className="searchBox" label="Search" />
+                        <Button type="submit" variant="outlined"><SearchIcon /></Button>
+                    </div>
                 </form>
-                <Tabs onChange={(e,ne)=>setType(ne)} value= {type} indicatorColor="primary" textColor='primary'>
+                <Tabs onChange={(e, ne) => setType(ne)} value={type} indicatorColor="primary" textColor='primary'>
                     <Tab style={{ width: "50%" }} label="Search Movies" />
-                    <Tab style={ {width:"50%"}} label="Search TV Series " />
+                    <Tab style={{ width: "50%" }} label="Search TV Series " />
                 </Tabs>
             </ThemeProvider>
-            <div className = "trending" style={{ display:"flex", flexWrap:'wrap' ,justifyContent:'space-around'}}>
+            <div className="trending" style={{ display: "flex", flexWrap: 'wrap', justifyContent: 'space-around' }}>
                 {
                     content && content.map(e => {
-                        return <Content key={e.id} id={e.id} poster={e.poster_path} title={e.title || e.name} date={e.release_date || e.first_air_date} media={type?"tv":"movie"} rating={e.vote_average} />
+                        return <Content key={e.id} id={e.id} poster={e.poster_path} title={e.title || e.name} date={e.release_date || e.first_air_date} media={type ? "tv" : "movie"} rating={e.vote_average} />
                     })
                 }
-                 {searchText &&
-          !content &&
-          (type ? <h2>No Series Found</h2> : <h2>No Movies Found</h2>)}
+                {searchText &&
+                    !content &&
+                    (type ? <h2>No Series Found</h2> : <h2>No Movies Found</h2>)}
             </div>
             {
-                numPages > 1 &&  <Paginaion setPage={setPage} numOfPages = {numPages} />   
-           }
+                numPages > 1 && <Paginaion setPage={setPage} numOfPages={numPages} />
+            }
         </div>
     )
 }

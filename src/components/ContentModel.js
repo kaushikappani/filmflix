@@ -72,7 +72,7 @@ export default function ContentModel({ children, media, id }) {
   return (
     <>
       {
-        loading ? <div className="loading_div"><CircularProgress size="1rem" style={{ color: "#ffffff" }} /></div> : <div className="media" type="button" onClick={handleOpen}>
+        loading ? <div className="media"><CircularProgress size="1rem" style={{ color: "#ffffff" }} /></div> : <div className="media" type="button" onClick={handleOpen}>
           {children}
         </div>
       }

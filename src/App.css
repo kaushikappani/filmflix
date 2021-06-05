@@ -28,3 +28,20 @@
   font-family: 'Montserrat';
   cursor: pointer;
 }
+
+.loading_div {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  min-height: 400px;
+  padding: 5px;
+  margin: 5px 0;
+  background-color: #282c34;
+  border-radius: 0px;
+  position: relative;
+  font-family: "Montserrat",
+    sans-serif;
+  overflow: hidden;
+  justify-content: space-around;
+  text-align: center;
+}

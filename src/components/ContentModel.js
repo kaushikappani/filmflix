@@ -10,7 +10,9 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import "./contentModel.css"
 import Carousel from "./Caurasol";
 import Rating from '@material-ui/lab/Rating';
-import Chip from '@material-ui/core/Chip'
+import Chip from '@material-ui/core/Chip';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
@@ -35,6 +37,7 @@ export default function ContentModel({ children, media, id }) {
   const [open, setOpen] = React.useState(false);
   const [content, setContent] = useState();
   const [video, setVideo] = useState();
+  const [loading, setLoading] = useState(true);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -54,8 +57,8 @@ export default function ContentModel({ children, media, id }) {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/${media}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
-
     setVideo(data.results[0]?.key);
+    setLoading(false)
   };
 
 
@@ -68,9 +71,11 @@ export default function ContentModel({ children, media, id }) {
 
   return (
     <>
-      <div className="media" type="button" onClick={handleOpen}>
-        {children}
-      </div>
+      {
+        loading ? <div className="loading_div"><CircularProgress size="1rem" style={{ color: "#ffffff" }} /></div> : <div className="media" type="button" onClick={handleOpen}>
+          {children}
+        </div>
+      }
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

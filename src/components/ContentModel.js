@@ -35,8 +35,6 @@ export default function ContentModel({ children, media, id }) {
   const [open, setOpen] = React.useState(false);
   const [content, setContent] = useState();
   const [video, setVideo] = useState();
-  const [providers, setProviders] = useState();
-
   const handleOpen = () => {
     setOpen(true);
   };
@@ -59,16 +57,11 @@ export default function ContentModel({ children, media, id }) {
 
     setVideo(data.results[0]?.key);
   };
-  const fetchProviders = async () => {
-    const { data } = await axios.get(`https://api.themoviedb.org/3/${media}/${id}/watch/providers?api_key=${process.env.REACT_APP_API_KEY}`)
-    setProviders(data.results);
-  }
 
 
   useEffect(() => {
     fetchData();
     fetchVideo();
-    fetchProviders();
     // eslint-disable-next-line
   });
 

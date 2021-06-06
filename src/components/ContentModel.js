@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { img_500, unavailableLandscape } from "../config/config";
+import { img_500, img_300, unavailableLandscape } from "../config/config";
 import Button from '@material-ui/core/Button';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import "./contentModel.css"
@@ -34,10 +34,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ContentModel({ children, media, id }) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [content, setContent] = useState();
   const [video, setVideo] = useState();
-  const [loading, setLoading] = useState(true);
+  const [providers, setProviders] = useState();
+  const [loading, setLoading] = useState(true)
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -45,29 +47,37 @@ export default function ContentModel({ children, media, id }) {
   const handleClose = () => {
     setOpen(false);
   };
+
   const fetchData = async () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/${media}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
 
     setContent(data);
+    // console.log(data);
   };
+  const fetchProviders = async () => {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/${media}/${id}/watch/providers?api_key=${process.env.REACT_APP_API_KEY}`
+    );
+    setProviders(data.results.IN);
+  }
 
   const fetchVideo = async () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/${media}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
+
     setVideo(data.results[0]?.key);
     setLoading(false)
   };
 
-
   useEffect(() => {
     fetchData();
     fetchVideo();
+    fetchProviders();
     // eslint-disable-next-line
-  });
-
+  }, []);
 
   return (
     <>
@@ -106,6 +116,17 @@ export default function ContentModel({ children, media, id }) {
                   </div>
 
                 }
+                {providers && providers.flatrate && <div className="content_providers">
+                  <h3> Stream</h3>
+                  <div className="content_providers_img">
+                    {
+                      providers && providers.flatrate && (<div><img alt={providers.flatrate[0].provider_name} src={`${img_300}/${providers.flatrate[0].logo_path}`} /> </div>)
+                    }
+                    {
+                      providers && providers.flatrate && providers.flatrate[1] && (<div><img alt={providers.flatrate[1].provider_name} src={`${img_300}/${providers.flatrate[1].logo_path}`} /> </div>)
+                    }
+                  </div>
+                </div>}
 
                 <div className="genres">
                   {

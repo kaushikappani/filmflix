@@ -10,18 +10,18 @@ const imgStyle = {
   borderRadius: "10px",
   marginBottom: "5px",
   boxShadow: '0px 0px 5px black',
-    maxHeight: "300px",
-  maxWidth:"100px"
+  maxHeight: "300px",
+  maxWidth: "100px"
 }
 const carouselItem = {
-    display: "flex",
+  display: "flex",
   flexDirection: "column",
   objectFit: "contain",
   padding: "10px"
 }
 
 const Carousel = ({ media, id }) => {
-   const [credits, setCredits] = useState([]);
+  const [credits, setCredits] = useState([]);
 
   const items = credits.map((c) => (
     <div style={carouselItem} className="carouselItem">
@@ -59,14 +59,17 @@ const Carousel = ({ media, id }) => {
     // eslint-disable-next-line
   }, []);
 
-    return (
-        <AliceCarousel style={{color:'red'}} mouseTracking
+  return (
+    <AliceCarousel style={{ color: 'red' }} mouseTracking
       infinite
+      autoPlay
+      autoPlayInterval={1000}
       disableDotsControls
+      disableButtonsControls
       responsive={responsive}
       items={items}
-       />
-    );
+    />
+  );
 };
 
 export default Carousel;

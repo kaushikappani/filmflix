@@ -8,7 +8,7 @@
 .contentModel_rating {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    padding-bottom: 7px;
 }
 
 .genres {
@@ -29,7 +29,6 @@
 
 .content_tagline {
     padding-bottom: 10px;
-    align-self: center;
 }
 
 .contentModel {
@@ -62,14 +61,14 @@
     font-size: 5vw;
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding-bottom: 10px;
 }
 
 .content_dscription {
     display: flex;
     height: 40%;
     overflow-y: scroll;
-    padding: 20px;
+    padding: 2px;
     border-radius: 5px;
     scrollbar-width: thin;
     box-shadow: inset 0 0 4px #282c34;
@@ -77,6 +76,25 @@
 
 .content_dscription::-webkit-scrollbar {
     display: none;
+}
+
+.content_providers {
+    display: flex;
+    flex-direction: column;
+}
+
+.content_providers h3 {
+    margin: 5px 0;
+}
+
+.content_providers_img {
+    display: flex;
+    flex-direction: row;
+}
+
+.content_providers_img img {
+    padding-right: 10px;
+    max-width: 50px;
 }
 
 @media (min-width: 835px) {

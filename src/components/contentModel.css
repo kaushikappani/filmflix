@@ -8,7 +8,7 @@
 .contentModel_rating {
     display: flex;
     flex-direction: row;
-    padding-bottom: 7px;
+    padding-bottom: 5px;
 }
 
 .genres {
@@ -28,7 +28,7 @@
 }
 
 .content_tagline {
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 .contentModel {
@@ -56,12 +56,16 @@
     font-weight: 300;
 }
 
+.contentModel_about::-webkit-scrollbar {
+    display: none
+}
+
 .content_title {
     height: 12%;
     font-size: 5vw;
     display: flex;
     align-items: center;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 .content_dscription {
@@ -79,11 +83,15 @@
 }
 
 .content_providers {
+    padding-left: 1px;
     display: flex;
     flex-direction: column;
 }
 
-.content_providers h3 {
+.content_providers span {
+    font-family: "Roboto",
+        sans-serif;
+    font-weight: bold;
     margin: 5px 0;
 }
 

@@ -117,7 +117,7 @@ export default function ContentModel({ children, media, id }) {
 
                 }
                 {providers && providers.flatrate && <div className="content_providers">
-                  <h3> Stream</h3>
+                  <span> Stream</span>
                   <div className="content_providers_img">
                     {
                       providers && providers.flatrate && (<div><img alt={providers.flatrate[0].provider_name} src={`${img_300}/${providers.flatrate[0].logo_path}`} /> </div>)
@@ -136,7 +136,9 @@ export default function ContentModel({ children, media, id }) {
                   }
                 </div>
 
-                <span className="content_dscription">{content.overview}</span>
+                {
+                  content.overview && <span className="content_dscription">{content.overview}</span>
+                }
 
                 <div>
                   <Carousel media={media} id={id} />

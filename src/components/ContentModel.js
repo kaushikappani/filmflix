@@ -143,7 +143,7 @@ export default function ContentModel({ children, media, id }) {
                 <div>
                   <Carousel media={media} id={id} />
                 </div>
-                {video && <Button style={{ backgroundColor: '#181818', color: "#ffffff" }} variant="contained" startIcon={<YouTubeIcon />} target="_blank" href={`https://www.youtube.com/watch?v=${video}`}>TRAILER</Button>}
+                {video && <Button style={{ backgroundColor: '#FF0000', color: "#ffffff", fontWeight: "bold" }} variant="contained" startIcon={<YouTubeIcon />} target="_blank" href={`https://www.youtube.com/watch?v=${video}`}>TRAILER</Button>}
               </div>
             </div>
           </div>}

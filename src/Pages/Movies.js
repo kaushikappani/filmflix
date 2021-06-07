@@ -31,18 +31,24 @@ const Movies = () => {
     }
     return (
         <div>
-            <span className='pageTitle'>Movies </span>
-            <Languages
-                data={langData}
-                selected={lang}
-                handleAdd={setLang}
-            />
-            <Genres
-                type='movie'
-                selectedGenres={selectedGenres} genres={genres}
-                setSelectedGenres={setSelectedGenres} setGenres={setGenres}
-                setPage={setPage}
-            />
+            <div className="page_title_language">
+                <span className='pageTitle'>Movies</span>
+                <div className="languages">
+                    <Languages
+                        data={langData}
+                        selected={lang}
+                        handleAdd={setLang}
+                    />
+                </div>
+            </div>
+            <div className="genres_div">
+                <Genres
+                    type='movie'
+                    selectedGenres={selectedGenres} genres={genres}
+                    setSelectedGenres={setSelectedGenres} setGenres={setGenres}
+                    setPage={setPage}
+                />
+            </div>
             <div className="trending" style={{ display: "flex", flexWrap: 'wrap', justifyContent: 'space-around' }}>
                 {
                     content && content.map(e => {

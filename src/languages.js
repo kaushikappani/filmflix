@@ -10,7 +10,12 @@ const languages = [
     {
         "English": "Hindi",
         "alpha2": "hi"
+    },
+    {
+        "English": "tamil",
+        "alpha2": "ta"
     }
+
 
 ];
 

@@ -20,6 +20,7 @@
 }
 
 .pageTitle {
+  min-width: 130px;
   display: flex;
   justify-content: space-between;
   font-size: 30px;
@@ -27,4 +28,30 @@
   color: #ffffff;
   font-family: 'Montserrat';
   cursor: pointer;
+  font-weight: bold;
+  padding: 0 0 0 5px;
+}
+
+.page_title_language {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.languages {
+  overflow-x: scroll;
+  white-space: nowrap;
+  padding: 4px 0
+}
+
+.languages::-webkit-scrollbar {
+  display: none
+}
+
+.MuiContainer-root {
+  padding: 0 !important;
+}
+
+.genres_div {
+  padding: 0 5px;
 }

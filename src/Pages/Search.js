@@ -8,7 +8,8 @@ import axios from 'axios';
 const style = {
     display: "flex",
     margin: "15px 0",
-    width: '100%'
+    width: '100%',
+    padding: '0 0 0 5px'
 }
 const Search = () => {
 

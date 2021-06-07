@@ -17,6 +17,7 @@
 }
 
 .media:hover {
+    cursor: pointer;
     background-color: #404040;
 }
 

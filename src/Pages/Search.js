@@ -55,7 +55,7 @@ const Search = () => {
             <ThemeProvider theme={theme}>
                 <form onSubmit={handelSubmit}>
                     <div style={style}><TextField onChange={e => setSearchText(e.target.value)} style={{ flex: 1 }} className="searchBox" label="Search" />
-                        <Button type="submit" variant="outlined"><SearchIcon /></Button>
+                        <Button type="submit"><SearchIcon /></Button>
                     </div>
                 </form>
                 <Tabs onChange={(e, ne) => setType(ne)} value={type} indicatorColor="primary" textColor='primary'>

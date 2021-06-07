@@ -7,7 +7,6 @@ import ContentModel from "./ContentModel"
 const Content = ({ id, poster, title, date, media, rating }) => {
     return (
         <ContentModel media={media} id={id}>
-            {/* <div className="content_img"><img className='poster' src={poster ? `${img_300}/${poster}` : unavailable} alt={title} /></div> */}
             <div className="img_div"><img className='poster' src={poster ? `${img_300}/${poster}` : unavailable} alt={title} /></div>
             <b className='title'>{title}</b>
             <div className='subTitle'>{media === 'tv' ? "TV Series" : "Movie"}</div>

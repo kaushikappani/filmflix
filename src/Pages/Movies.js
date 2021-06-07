@@ -4,26 +4,39 @@ import Content from '../components/Content';
 import Paginaion from '../components/Paginaion';
 import Genres from "../components/Genres";
 import useGenre from "../Hooks/useGenre";
+import langData from "../languages";
+import Languages from "../components/Languages"
 const Movies = () => {
     const [page, setPage] = useState(1);
     const [content, setContent] = useState([]);
     const [numPages, setNumpages] = useState();
     const [selectedGenres, setSelectedGenres] = useState([]);
     const [genres, setGenres] = useState([]);
-    const genreForURL = useGenre(selectedGenres)
+    const [lang, setLanguange] = useState("en");
+    const genreForURL = useGenre(selectedGenres);
+
     const fetchMovies = async () => {
-        const { data } = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&region=IN&sort_by=release_date.desc&include_adult=true&include_video=true&page=${page}&with_genres=${genreForURL}&with_original_language=te`)
+        const date = new Date().toISOString();
+        const { data } = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=release_date.desc&include_adult=true&include_video=true&page=${page}&with_genres=${genreForURL}&with_original_language=${lang}&release_date.lte=${date}`)
         setContent(data.results);
         setNumpages(data.total_pages)
     };
     useEffect(() => {
         fetchMovies()
         // eslint-disable-next-line
-    }, [page, genreForURL]);
+    }, [page, genreForURL, lang]);
+    const setLang = (e) => {
+        setPage(1)
+        setLanguange(e.alpha2)
+    }
     return (
         <div>
-
             <span className='pageTitle'>Movies </span>
+            <Languages
+                data={langData}
+                selected={lang}
+                handleAdd={setLang}
+            />
             <Genres
                 type='movie'
                 selectedGenres={selectedGenres} genres={genres}

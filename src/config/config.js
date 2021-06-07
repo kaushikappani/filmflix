@@ -4,7 +4,7 @@ export const img_500 = "https://image.tmdb.org/t/p/w500";
 
 // contentModal and singleContent
 export const unavailable =
-  "https://www.movienewz.com/img/films/poster-holder.jpg";
+  "https://www.csaff.org/wp-content/uploads/csaff-no-poster.jpg";
 
 // contentModal
 export const unavailableLandscape =

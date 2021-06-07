@@ -48,8 +48,13 @@
   display: none
 }
 
-.MuiContainer-root {
+/* .MuiContainer-root {
   padding: 0 !important;
+} */
+@media (max-width: 835px) {
+  .MuiContainer-root {
+    padding: 0 !important;
+  }
 }
 
 .genres_div {

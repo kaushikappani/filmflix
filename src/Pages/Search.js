@@ -12,7 +12,7 @@ const style = {
     padding: '0 0 0 5px'
 }
 const Search = () => {
-
+    window.scrollTo(0, 0);
     const [type, setType] = useState(0);
     const [page, setPage] = useState(1);
     const [searchText, setSearchText] = useState("");

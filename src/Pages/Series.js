@@ -7,6 +7,7 @@ import useGenre from "../Hooks/useGenre";
 import langData from "../languages";
 import Languages from "../components/Languages"
 const Series = () => {
+    window.scrollTo(0, 0);
     const [page, setPage] = useState(1);
     const [content, setContent] = useState([]);
     const [numPages, setNumpages] = useState();

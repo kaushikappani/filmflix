@@ -7,6 +7,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Trending = () => {
+    window.scrollTo(0, 0);
     const [content, setContent] = useState([]);
     const [dayWeek, setDayWeek] = useState('day')
     const [page, setPage] = useState(1);

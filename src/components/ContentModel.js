@@ -102,7 +102,7 @@ export default function ContentModel({ children, media, id }) {
           {content && <div className={classes.paper}>
             <div className="contentModel" >
               <img className="content_img" alt={content.name || content.title} src={content.poster_path ? `${img_500}/${content.poster_path}` : unavailableLandscape} />
-              <img className="content_img_landscape" alt={content.name || content.title} src={content.poster_path ? `${img_500}/${content.backdrop_path}` : unavailableLandscape} />
+              <img className="content_img_landscape" alt={content.name || content.title} src={content.backdrop_path ? `${img_500}/${content.backdrop_path}` : unavailableLandscape} />
 
               <div className="contentModel_about">
 

@@ -61,7 +61,6 @@ const Carousel = ({ media, id }) => {
 
   return (
     <AliceCarousel style={{ color: 'red' }} mouseTracking
-      infinite
       autoPlay
       autoPlayInterval={1000}
       disableDotsControls

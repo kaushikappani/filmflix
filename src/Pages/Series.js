@@ -17,9 +17,11 @@ const Series = () => {
     const [genres, setGenres] = useState([]);
     const [lang, setLanguange] = useState("en");
     const genreForURL = useGenre(selectedGenres);
-    const fetchArrivingToday = async () => {
-        const { data } = await axios.get(`https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
-        setArrivingToday(data.results);
+    const fetchArrivingTodaypage = async (arrivingTodayPage) => {
+        const { data } = await axios.get(`https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${arrivingTodayPage}`)
+        setArrivingToday(preVal => {
+            return [...preVal, ...data.results]
+        });
     }
     const fetchMovies = async () => {
         const { data } = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=true&page=${page}&with_genres=${genreForURL}&with_original_language=${lang}`)
@@ -34,7 +36,8 @@ const Series = () => {
         fetchMovies();        // eslint-disable-next-line
     }, [page, genreForURL, lang]);
     useEffect(() => {
-        fetchArrivingToday();
+        fetchArrivingTodaypage(1);
+        fetchArrivingTodaypage(2);
     }, [])
     return (
         <div>

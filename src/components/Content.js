@@ -8,7 +8,7 @@ const Content = ({ id, poster, title, date, media, rating }) => {
     return (
         <ContentModel media={media} id={id}>
             <div className="img_div"><img className='poster' src={poster ? `${img_300}/${poster}` : unavailable} alt={title} /></div>
-            <b className='title'>{title}</b>
+            <div className="title_div"><b className='title'>{title}</b></div>
             <div className='subTitle'>{media === 'tv' ? "TV Series" : "Movie"}</div>
             <div className='subTitle'>{date}</div>
             { rating > 0 && <Rating name="half-rating-read" defaultValue={rating / 2} precision={0.1} readOnly />}

@@ -7,21 +7,25 @@ import useGenre from "../Hooks/useGenre";
 import langData from "../languages";
 import Languages from "../components/Languages";
 
+
 const Series = () => {
     window.scrollTo(0, 0);
     const [page, setPage] = useState(1);
     const [content, setContent] = useState([]);
     const [arrivingToday, setArrivingToday] = useState([]);
+    const [onAir, setOnair] = useState([]);
     const [numPages, setNumpages] = useState();
     const [selectedGenres, setSelectedGenres] = useState([]);
     const [genres, setGenres] = useState([]);
     const [lang, setLanguange] = useState("en");
     const genreForURL = useGenre(selectedGenres);
-    const fetchArrivingTodaypage = async (arrivingTodayPage) => {
-        const { data } = await axios.get(`https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${arrivingTodayPage}`)
-        setArrivingToday(preVal => {
-            return [...preVal, ...data.results]
-        });
+    const fetchArrivingTodaypage = async () => {
+        const { data } = await axios.get(`https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}&with_genres=${genreForURL}&with_original_language=${lang}`)
+        setArrivingToday(data.results);
+    };
+    const fetchonAir = async () => {
+        const { data } = await axios.get(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}&with_genres=${genreForURL}&with_original_language=${lang}`);
+        setOnair(data.results);
     }
     const fetchMovies = async () => {
         const { data } = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=true&page=${page}&with_genres=${genreForURL}&with_original_language=${lang}`)
@@ -33,11 +37,13 @@ const Series = () => {
         setLanguange(e.alpha2)
     }
     useEffect(() => {
-        fetchMovies();        // eslint-disable-next-line
+        fetchMovies();
+        fetchArrivingTodaypage();
+        fetchonAir();
+        // eslint-disable-next-line
     }, [page, genreForURL, lang]);
     useEffect(() => {
-        fetchArrivingTodaypage(1);
-        fetchArrivingTodaypage(2);
+
     }, [])
     return (
         <div>
@@ -60,14 +66,24 @@ const Series = () => {
                     setPage={setPage}
                 />
             </div>
-            <span className='pageTitle'>Arriving Today</span>
+            {arrivingToday && (arrivingToday.length !== 0 && <span className='pageTitle'>Arriving Today</span>)}
+
             <div className="arrivingToday">
                 {
                     arrivingToday && arrivingToday.map(e => {
-                        return <div style={{ paddingRight: "15px", height: "300px" }}><Content key={e.id} id={e.id} poster={e.poster_path} title={e.title || e.name} date={null} media="tv" rating={null} /></div>
+                        return <div key={e.id} style={{ paddingRight: "15px" }}><Content key={e.id} id={e.id} poster={e.poster_path} title={e.title || e.name} date={null} media="tv" rating={null} /></div>
                     })
                 }
             </div>
+            {onAir && (onAir.length !== 0 && <span className='pageTitle'>On TV</span>)}
+            <div className="arrivingToday">
+                {
+                    onAir && onAir.map(e => {
+                        return <div key={e.id} style={{ paddingRight: "15px" }}><Content key={e.id} id={e.id} poster={e.poster_path} title={e.title || e.name} date={null} media="tv" rating={null} /></div>
+                    })
+                }
+            </div>
+            {content && (content.length !== 0 && <span className='pageTitle'>Popular</span>)}
             <div className="trending" style={{ display: "flex", flexWrap: 'wrap', justifyContent: 'space-around' }}>
                 {
                     content && content.map(e => {
@@ -75,6 +91,7 @@ const Series = () => {
                     })
                 }
             </div>
+
             {
                 numPages > 1 && <Paginaion setPage={setPage} numOfPages={numPages} />
             }

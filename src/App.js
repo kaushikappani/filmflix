@@ -1,6 +1,6 @@
 import './App.css';
 import React from "react";
-import { BrowserRouter,Route,Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Container } from '@material-ui/core';
@@ -15,15 +15,15 @@ function App() {
       <div className="app">
         <Container>
           <Switch>
-            <Route path='/' component={Trending} exact/>
+            <Route path='/' component={Trending} exact />
             <Route path='/movies' component={Movies} exact />
             <Route path='/series' component={Series} exact />
-            <Route path='/search' component={Search}  />
+            <Route path='/search' component={Search} />
           </Switch>
-        </Container>  
-    </div>
-       <Footer />
-      
+        </Container>
+      </div>
+      <Footer />
+
     </BrowserRouter>
   )
 }

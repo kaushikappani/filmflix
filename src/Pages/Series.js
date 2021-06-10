@@ -6,7 +6,8 @@ import Genres from "../components/Genres";
 import useGenre from "../Hooks/useGenre";
 import langData from "../languages";
 import Languages from "../components/Languages";
-
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 const Series = () => {
     window.scrollTo(0, 0);
@@ -44,7 +45,11 @@ const Series = () => {
     }, [page, genreForURL, lang]);
     useEffect(() => {
 
-    }, [])
+    }, []);
+    const handleClickBefore = () => {
+        document.getElementsByClassName("arrivingToday")[0].scrollLeft -= 100
+
+    }
     return (
         <div>
 
@@ -66,20 +71,27 @@ const Series = () => {
                     setPage={setPage}
                 />
             </div>
-            {arrivingToday && (arrivingToday.length !== 0 && <span className='pageTitle'>Arriving Today</span>)}
+            {arrivingToday && (arrivingToday.length !== 0 && <span className='pageTitle'>Arriving Today
+            <div className="series_navigation"><NavigateBeforeIcon onClick={() => document.getElementsByClassName("arrivingToday")[0].scrollLeft -= 1000} fontSize="large" />
+                    <NavigateNextIcon onClick={() => document.getElementsByClassName("arrivingToday")[0].scrollLeft += 1000} fontSize="large" /></div></span>)}
 
             <div className="arrivingToday">
                 {
                     arrivingToday && arrivingToday.map(e => {
-                        return <div key={e.id} style={{ paddingRight: "15px" }}><Content key={e.id} id={e.id} poster={e.poster_path} title={e.title || e.name} date={null} media="tv" rating={null} /></div>
+                        return <div key={e.id} style={{ paddingRight: "15px" }}>
+                            <Content contentfrom="arrivingToday" key={e.id} id={e.id} poster={e.poster_path} title={e.title || e.name} date={null} media="tv" rating={null} /></div>
                     })
                 }
             </div>
-            {onAir && (onAir.length !== 0 && <span className='pageTitle'>On TV</span>)}
+            {onAir && (onAir.length !== 0 && <span className='pageTitle'>On TV
+            <div className="series_navigation"><NavigateBeforeIcon onClick={() => document.getElementsByClassName("arrivingToday")[1].scrollLeft -= 1000} fontSize="large" />
+                    <NavigateNextIcon onClick={() => document.getElementsByClassName("arrivingToday")[1].scrollLeft += 1000} fontSize="large" /></div>
+            </span>)}
             <div className="arrivingToday">
                 {
                     onAir && onAir.map(e => {
-                        return <div key={e.id} style={{ paddingRight: "15px" }}><Content key={e.id} id={e.id} poster={e.poster_path} title={e.title || e.name} date={null} media="tv" rating={null} /></div>
+                        return <div key={e.id} style={{ paddingRight: "15px" }}>
+                            <Content key={e.id} id={e.id} poster={e.poster_path} title={e.title || e.name} date={null} media="tv" rating={null} /></div>
                     })
                 }
             </div>

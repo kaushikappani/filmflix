@@ -29,7 +29,7 @@ const Trending = () => {
     return (
         <div>
             {
-                loading ? <div className="loading_div"><CircularProgress size="10rem" style={{ color: "#ffffff" }} /></div> : <div> <span onClick={changeDayWeek} className='pageTitle'>Trending {dayWeek === 'day' ? "Today" : "This Week"} {dayWeek === 'day' ? <ExpandLessIcon style={{ fontSize: 40 }} /> : <ExpandMoreIcon style={{ fontSize: 40 }} />}</span>
+                loading ? <div className="loading_div"><CircularProgress style={{ color: "#ffffff" }} /></div> : <div> <span onClick={changeDayWeek} className='pageTitle'>Trending {dayWeek === 'day' ? "Today" : "This Week"} {dayWeek === 'day' ? <ExpandLessIcon style={{ fontSize: 40 }} /> : <ExpandMoreIcon style={{ fontSize: 40 }} />}</span>
                     <div className="trending" style={{ display: "flex", flexWrap: 'wrap', justifyContent: 'space-around' }}>
                         {
                             content && content.map(e => {

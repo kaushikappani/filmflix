@@ -46,10 +46,6 @@ const Series = () => {
     useEffect(() => {
 
     }, []);
-    const handleClickBefore = () => {
-        document.getElementsByClassName("arrivingToday")[0].scrollLeft -= 100
-
-    }
     return (
         <div>
 

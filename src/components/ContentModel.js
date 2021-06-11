@@ -124,13 +124,13 @@ export default function ContentModel({ children, media, id }) {
                     {providers && providers.flatrate && (<span> Stream</span>)}
                     <div className="content_providers_img">
                       {
-                        providers && providers.flatrate && providers.flatrate[1] && (<div><img alt={providers.flatrate[0].provider_name} src={`${img_300}/${providers.flatrate[0].logo_path}`} /> </div>)
+                        providers && providers.flatrate && providers.flatrate[0] && (<div><img alt={providers.flatrate[0].provider_name} src={`${img_300}/${providers.flatrate[0].logo_path}`} /> </div>)
                       }
                       {
                         providers && providers.flatrate && providers.flatrate[1] && (<div><img alt={providers.flatrate[1].provider_name} src={`${img_300}/${providers.flatrate[1].logo_path}`} /> </div>)
                       }
                       {
-                        content && content.networks && content.networks[1] && (<div style={{ backgroundColor: "#ffffff", width: "fitContent" }}><img style={{ padding: "5px" }} alt={content.networks[0].name} src={`${img_300}/${content.networks[0].logo_path}`} /> </div>)
+                        content && content.networks && content.networks[0] && (<div style={{ backgroundColor: "#ffffff", width: "fitContent" }}><img style={{ padding: "5px" }} alt={content.networks[0].name} src={`${img_300}/${content.networks[0].logo_path}`} /> </div>)
                       }
                     </div>
                   </>

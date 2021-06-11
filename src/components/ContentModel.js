@@ -106,7 +106,10 @@ export default function ContentModel({ children, media, id }) {
 
               <div className="contentModel_about">
 
-                <span className="content_title">{content.name || content.title} ({content.first_air_date || content.release_date || "----"} )</span>
+                <span className="content_title">{content.name || content.title} ({content.last_air_date || content.release_date || "----"} )</span>
+                {/* {
+                  media === "tv" && <> <span>Latest Episode {content.last_air_date} </span>{content.next_episode_to_air && <span>Next Episode {content.next_episode_to_air.air_date} </span>}</>
+                } */}
                 {content.tagline && <i className="content_tagline">{content.tagline}</i>}
                 {
                   content.vote_average > 0 && <div className="contentModel_rating">
@@ -116,17 +119,23 @@ export default function ContentModel({ children, media, id }) {
                   </div>
 
                 }
-                {providers && providers.flatrate && <div className="content_providers">
-                  <span> Stream</span>
-                  <div className="content_providers_img">
-                    {
-                      providers && providers.flatrate && (<div><img alt={providers.flatrate[0].provider_name} src={`${img_300}/${providers.flatrate[0].logo_path}`} /> </div>)
-                    }
-                    {
-                      providers && providers.flatrate && providers.flatrate[1] && (<div><img alt={providers.flatrate[1].provider_name} src={`${img_300}/${providers.flatrate[1].logo_path}`} /> </div>)
-                    }
-                  </div>
-                </div>}
+                <div className="content_providers">
+                  <>
+                    {providers && providers.flatrate && (<span> Stream</span>)}
+                    <div className="content_providers_img">
+                      {
+                        providers && providers.flatrate && (<div><img alt={providers.flatrate[0].provider_name} src={`${img_300}/${providers.flatrate[0].logo_path}`} /> </div>)
+                      }
+                      {
+                        providers && providers.flatrate && providers.flatrate[1] && (<div><img alt={providers.flatrate[1].provider_name} src={`${img_300}/${providers.flatrate[1].logo_path}`} /> </div>)
+                      }
+                      {
+                        content && content.networks && (<div style={{ backgroundColor: "#ffffff", width: "fitContent" }}><img style={{ padding: "5px" }} alt={content.networks[0].name} src={`${img_300}/${content.networks[0].logo_path}`} /> </div>)
+                      }
+                    </div>
+                  </>
+                </div>
+
 
                 <div className="genres">
                   {

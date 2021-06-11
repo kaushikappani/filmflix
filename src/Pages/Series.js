@@ -68,20 +68,33 @@ const Series = () => {
                 />
             </div>
             {arrivingToday && (arrivingToday.length !== 0 && <span className='pageTitle'>Arriving Today
-            <div className="series_navigation"><NavigateBeforeIcon onClick={() => document.getElementsByClassName("arrivingToday")[0].scrollLeft -= 1000} fontSize="large" />
-                    <NavigateNextIcon onClick={() => document.getElementsByClassName("arrivingToday")[0].scrollLeft += 1000} fontSize="large" /></div></span>)}
+            <div className="series_navigation" ><NavigateBeforeIcon style={{ cursor: "pointer" }} onClick={() => document.getElementsByClassName("arrivingToday")[0].scrollLeft -= 800} fontSize="large" />
+                    <NavigateNextIcon style={{ cursor: "pointer" }} onClick={(e) => {
+                        e.target.display = "none";
+                        document.getElementsByClassName("arrivingToday")[0].scrollLeft += 800
+                    }}
+                        fontSize="large" /></div></span>)}
 
             <div className="arrivingToday">
                 {
                     arrivingToday && arrivingToday.map(e => {
                         return <div key={e.id} style={{ paddingRight: "15px" }}>
-                            <Content contentfrom="arrivingToday" key={e.id} id={e.id} poster={e.poster_path} title={e.title || e.name} date={null} media="tv" rating={null} /></div>
+                            <Content contentfrom="arrivingToday"
+                                key={e.id} id={e.id}
+                                poster={e.poster_path}
+                                title={e.title || e.name}
+                                date={null} media="tv"
+                                rating={null} />
+                        </div>
                     })
                 }
             </div>
             {onAir && (onAir.length !== 0 && <span className='pageTitle'>On TV
-            <div className="series_navigation"><NavigateBeforeIcon onClick={() => document.getElementsByClassName("arrivingToday")[1].scrollLeft -= 1000} fontSize="large" />
-                    <NavigateNextIcon onClick={() => document.getElementsByClassName("arrivingToday")[1].scrollLeft += 1000} fontSize="large" /></div>
+            <div className="series_navigation"><NavigateBeforeIcon onClick={() => { document.getElementsByClassName("arrivingToday")[1].scrollLeft -= 800 }} fontSize="large" />
+                    <NavigateNextIcon onClick={() => {
+                        document.getElementsByClassName("arrivingToday")[1].scrollLeft += 800
+                    }} fontSize="large" />
+                </div>
             </span>)}
             <div className="arrivingToday">
                 {
@@ -95,7 +108,12 @@ const Series = () => {
             <div className="trending" style={{ display: "flex", flexWrap: 'wrap', justifyContent: 'space-around' }}>
                 {
                     content && content.map(e => {
-                        return <Content key={e.id} id={e.id} poster={e.poster_path} title={e.title || e.name} date={e.release_date || e.first_air_date} media="tv" rating={e.vote_average} />
+                        return <Content key={e.id}
+                            id={e.id}
+                            poster={e.poster_path}
+                            title={e.title || e.name}
+                            date={e.release_date || e.first_air_date}
+                            media="tv" rating={e.vote_average} />
                     })
                 }
             </div>
